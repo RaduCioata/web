@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>: Defines the header section of the page -->
+    <header>
+        <h1>About Me</h1>
+
+        <!-- <nav>: Defines a navigation menu -->
+        <nav>
+            <ul> <!-- <ul>: Unordered list -->
+                <li><a href="#bio">Biography</a></li> <!-- <a>: Anchor tag for navigation -->
+                <li><a href="#media">My Picture</a></li>
+                <li><a href="#contact">Contact Me</a></li>
+            </ul>
+        </nav>
+        <hr> <!-- <hr>: Horizontal line to separate sections -->
+    </header>
+    
+    <main> <!-- <main>: Defines the main content of the page -->
+
+        <!-- <section>: Defines sections in the page -->
+        <section id="bio">
+            <h2>Biography</h2>
+            <p><b>Name:</b> Cioată Radu</p> <!-- <p>: Paragraph tag, <b>: Bold text -->
+            <p><b>Age:</b> 21</p>
+            <p><b>Occupation:</b> Student / Software Developer</p>
+            <p><b>Hobbies:</b> Formula 1, Traveling</p>
+        </section>
+        <hr>
+
+        <section id="media">
+            <h2>My Picture</h2>
+            <figure> <!-- <figure>: Used to group media elements -->
+                <img src="r.jpg" alt="Cioată Radu's Picture" width="200"> <!-- <img>: Image tag -->
+                <figcaption>Cioată Radu</figcaption> <!-- <figurecaption>: Caption for the image -->
+            </figure>
+            <!-- SVG Rectangle -->
+            <svg width="200" height="100">
+                <rect x="10" y="10" width="180" height="80" rx="30" ry="15" stroke="red" stroke-width="3" fill="blue" />
+            </svg>
+        </section>
+        <hr>
+	
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p><b>Email:</b> radu.cioata@stud.ubbcluj.ro</p>
+            <p><b>Phone:</b> +40752171749</p>
+            <p><b>Website:</b> <a href="https://raducioata.com">https://raducioata.com</a></p> <!-- <a>: Anchor tag for external links -->
+        </section>
+
+        <!-- <article>: Represents an independent piece of content -->
+        <article>
+            <h2>More About Me</h2>
+            <p>I'm a passionate software developer who loves technology and traveling.</p>
+        </article>
+
+        <!-- <aside>: Defines content aside from the main content -->
+        <aside>
+            <h3>Interesting Facts</h3>
+            <p>Did you know I have visited over 10 countries?</p>
+        </aside>
+
+        <!-- Example of a <table>: Defines tabular data -->
+        <table border="1">
+            <tr>
+                <th>Skill</th>
+                <th>Experience Level</th>
+            </tr>
+            <tr>
+                <td>Web Development</td>
+                <td>Advanced</td>
+            </tr>
+            <tr>
+                <td>Machine Learning</td>
+                <td>Intermediate</td>
+            </tr>
+        </table>
+
+        <br> <!-- <br>: Adds a line break -->
+
+        
+        <div style="background-color: lightgray; padding: 10px;">
+        <h3>Follow Me</h3>
+        <p>Check out my social media profiles:</p>
+        <p><a href="https://ro.linkedin.com/in/cioataradu" target="_blank">LinkedIn</a></p>
+        </div>
+
+
+        <!-- <audio>: Embeds an audio file -->
+        <audio controls>
+            <source src="music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- <video>: Embeds a video file -->
+        <video width="320" height="240" controls>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+    </main>
+
+    <!-- <footer>: Defines the footer of the page -->
+    <footer>
+        <p>&copy; 2025 Radu Cioată</p>
+    </footer>
+</body>
+</html>
