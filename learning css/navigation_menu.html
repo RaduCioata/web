@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Navigation Menu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a202c;
+            font-family: Arial, sans-serif;
+        }
+
+
+
+        .menu-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center-button {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #ff3e3e, #ff7676);
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .center-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Hide menu items initially */
+        .menu-item {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform-origin: center;
+            opacity: 0;
+            visibility: hidden;
+            /* Initially position all menu items at the center */
+            transform: translate(0, 0) scale(0.5);
+        }
+        
+        /* Show menu items when hovering the center button */
+        .menu-container:hover .menu-item {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Position menu items when they appear */
+        .menu-container:hover .item-1 {
+            transform: translate(120px, 0);
+        }
+        
+        .menu-container:hover .item-2 {
+            transform: translate(85px, 85px);
+        }
+        
+        .menu-container:hover .item-3 {
+            transform: translate(0, 120px);
+        }
+        
+        .menu-container:hover .item-4 {
+            transform: translate(-85px, 85px);
+        }
+        
+        .menu-container:hover .item-5 {
+            transform: translate(-120px, 0);
+        }
+        
+        .menu-container:hover .item-6 {
+            transform: translate(-85px, -85px);
+        }
+        
+        .menu-container:hover .item-7 {
+            transform: translate(0, -120px);
+        }
+        
+        .menu-container:hover .item-8 {
+            transform: translate(85px, -85px);
+        }
+
+        .menu-item:hover {
+            width: 80px;
+            height: 80px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+
+        /* Hide the original menu content */
+        .menu-content {
+            display: none;
+        }
+        
+        /* Info circles that appear on menu item hover */
+        .info-circle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: white;
+            color: #333;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 20;
+        }
+        
+        .info-circle h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+        }
+        
+        .info-circle p {
+            margin: 0;
+            font-size: 12px;
+        }
+        
+        /* Positioning for the info circles as petals */
+        /* Item 1 info circles */
+        .item-1 .info-primary {
+            transform: translate(120px, -50px);
+        }
+        
+        .item-1 .info-secondary {
+            transform: translate(120px, 90px);
+        }
+        
+        /* Item 2 info circles */
+        .item-2 .info-primary {
+            transform: translate(140px, 30px);
+        }
+        
+        .item-2 .info-secondary {
+            transform: translate(50px, 170px);
+        }
+        
+        /* Item 3 info circles */
+        .item-3 .info-primary {
+            transform: translate(80px, 100px);
+        }
+        
+        .item-3 .info-secondary {
+            transform: translate(-80px, 100px);
+        }
+        
+        /* Item 4 info circles */
+        .item-4 .info-primary {
+            transform: translate(-50px, 170px);
+        }
+        
+        .item-4 .info-secondary {
+            transform: translate(-140px, 30px);
+        }
+        
+        /* Item 5 info circles */
+        .item-5 .info-primary {
+            transform: translate(-120px, 90px);
+        }
+        
+        .item-5 .info-secondary {
+            transform: translate(-120px, -50px);
+        }
+        
+        /* Item 6 info circles */
+        .item-6 .info-primary {
+            transform: translate(-140px, -30px);
+        }
+        
+        .item-6 .info-secondary {
+            transform: translate(-50px, -170px);
+        }
+        
+        /* Item 7 info circles */
+        .item-7 .info-primary {
+            transform: translate(80px, -100px);
+        }
+        
+        .item-7 .info-secondary {
+            transform: translate(-80px, -100px);
+        }
+        
+        /* Item 8 info circles */
+        .item-8 .info-primary {
+            transform: translate(10px, -140px);
+        }
+        
+        .item-8 .info-secondary {
+            transform: translate(120px, -60px);
+        }
+        
+        /* Show info circles when hovering menu items */
+        .menu-item:hover .info-circle {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .item-1 {
+            background: linear-gradient(145deg, #3e9fff, #76b6ff);
+        }
+        .item-1:hover {
+            transform: translate(150px, 0) scale(1.2) !important;
+        }
+
+        .item-2 {
+            background: linear-gradient(145deg, #ff3e9f, #ff76b6);
+        }
+        .item-2:hover {
+            transform: translate(106px, 106px) scale(1.2) !important;
+        }
+
+        .item-3 {
+            background: linear-gradient(145deg, #9f3eff, #b676ff);
+        }
+        .item-3:hover {
+            transform: translate(0, 150px) scale(1.2) !important;
+        }
+
+        .item-4 {
+            background: linear-gradient(145deg, #3eff9f, #76ffb6);
+        }
+        .item-4:hover {
+            transform: translate(-106px, 106px) scale(1.2) !important;
+        }
+
+        .item-5 {
+            background: linear-gradient(145deg, #ffb63e, #ffd076);
+        }
+        .item-5:hover {
+            transform: translate(-150px, 0) scale(1.2) !important;
+        }
+
+        .item-6 {
+            background: linear-gradient(145deg, #3effb6, #76ffd0);
+        }
+        .item-6:hover {
+            transform: translate(-106px, -106px) scale(1.2) !important;
+        }
+
+        .item-7 {
+            background: linear-gradient(145deg, #ff9f3e, #ffb676);
+        }
+        .item-7:hover {
+            transform: translate(0, -150px) scale(1.2) !important;
+        }
+
+        .item-8 {
+            background: linear-gradient(145deg, #3eb6ff, #76d0ff);
+        }
+        .item-8:hover {
+            transform: translate(106px, -106px) scale(1.2) !important;
+        }
+
+        h1 {
+            position: absolute;
+            top: 50px;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Circular Navigation Menu</h1>
+    
+    <div class="menu-container">
+        <div class="center-button">Menu</div>
+        
+        <div class="menu-item item-1">
+            1
+            <div class="info-circle info-primary">
+                <h3>Home</h3>
+                <p>Return to the main page</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Quick Access</h3>
+                <p>Most visited pages</p>
+            </div>
+        </div>
+        
+        <div class="menu-item item-2">
+            2
+            <div class="info-circle info-primary">
+                <h3>Profile</h3>
+                <p>View your profile</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Edit Profile</h3>
+                <p>Change your settings</p>
+            </div>
+        </div>
+        
+        <div class="menu-item item-3">
+            3
+            <div class="info-circle info-primary">
+                <h3>Messages</h3>
+                <p>Check your messages</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Unread</h3>
+                <p>You have 5 new messages</p>
+            </div>
+        </div>
+        
+        <div class="menu-item item-4">
+            4
+            <div class="info-circle info-primary">
+                <h3>Settings</h3>
+                <p>Adjust your settings</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Preferences</h3>
+                <p>Customize your experience</p>
+            </div>
+        </div>
+        
+        <div class="menu-item item-5">
+            5
+            <div class="info-circle info-primary">
+                <h3>Gallery</h3>
+                <p>View your photos</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Albums</h3>
+                <p>Organize your collections</p>
+            </div>
+        </div>
+        
+        <div class="menu-item item-6">
+            6
+            <div class="info-circle info-primary">
+                <h3>Calendar</h3>
+                <p>Check your schedule</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Events</h3>
+                <p>Upcoming appointments</p>
+            </div>
+        </div>
+        
+        <div class="menu-item item-7">
+            7
+            <div class="info-circle info-primary">
+                <h3>Notifications</h3>
+                <p>View your alerts</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Activity</h3>
+                <p>Recent interactions</p>
+            </div>
+        </div>
+        
+        <div class="menu-item item-8">
+            8
+            <div class="info-circle info-primary">
+                <h3>Friends</h3>
+                <p>Connect with others</p>
+            </div>
+            <div class="info-circle info-secondary">
+                <h3>Requests</h3>
+                <p>Pending friend requests</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
