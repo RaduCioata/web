@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Bar Graph</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .graph-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 50px auto;
+            padding: 20px 40px 40px 40px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .graph-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .axis-y {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            width: 2px;
+            height: calc(100% - 60px);
+            background-color: #333;
+        }
+
+        .axis-x {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            width: calc(100% - 80px);
+            height: 2px;
+            background-color: #333;
+        }
+
+        .bars-container {
+            position: absolute;
+            bottom: 42px;
+            left: 42px;
+            width: calc(100% - 82px);
+            height: calc(100% - 102px);
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+
+        .bar {
+            width: 40px;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .bar-1 {
+            height: 60%;
+            background-color: #FF6384;
+        }
+
+        .bar-2 {
+            height: 85%;
+            background-color: #36A2EB;
+        }
+
+        .bar-3 {
+            height: 40%;
+            background-color: #FFCE56;
+        }
+
+        .bar-4 {
+            height: 70%;
+            background-color: #4BC0C0;
+        }
+
+        .bar-5 {
+            height: 90%;
+            background-color: #9966FF;
+        }
+
+        .bar-6 {
+            height: 50%;
+            background-color: #FF9F40;
+        }
+
+        .y-labels {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            height: calc(100% - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-right: 10px;
+        }
+
+        .y-label {
+            text-align: right;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="graph-container">
+        <h2 class="graph-title">Monthly Sales Performance</h2>
+        
+        <div class="axis-y"></div>
+        <div class="axis-x"></div>
+        
+        <div class="y-labels">
+            <div class="y-label">100</div>
+            <div class="y-label">80</div>
+            <div class="y-label">60</div>
+            <div class="y-label">40</div>
+            <div class="y-label">20</div>
+            <div class="y-label">0</div>
+        </div>
+        
+        <div class="bars-container">
+            <div class="bar bar-1">
+                <span class="bar-value">60</span>
+                <span class="bar-label">Jan</span>
+            </div>
+            
+            <div class="bar bar-2">
+                <span class="bar-value">85</span>
+                <span class="bar-label">Feb</span>
+            </div>
+            
+            <div class="bar bar-3">
+                <span class="bar-value">40</span>
+                <span class="bar-label">Mar</span>
+            </div>
+            
+            <div class="bar bar-4">
+                <span class="bar-value">70</span>
+                <span class="bar-label">Apr</span>
+            </div>
+            
+            <div class="bar bar-5">
+                <span class="bar-value">90</span>
+                <span class="bar-label">May</span>
+            </div>
+            
+            <div class="bar bar-6">
+                <span class="bar-value">50</span>
+                <span class="bar-label">Jun</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
