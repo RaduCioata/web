@@ -89,6 +89,12 @@
                 <option value="10">10</option>
             </select>
         </div>
+
+        <div class="control-group">
+            <input type="number" id="jumpToInput" placeholder="Slide number">
+            <button id="jumpToBtn">Jump to</button>
+        </div>
+
     </div>
 
     <script>
@@ -98,6 +104,9 @@
             const playPauseBtn = document.getElementById('playPauseBtn');
             const loopCheckbox = document.getElementById('loopCheckbox');
             const intervalSelect = document.getElementById('intervalSelect');
+            const jumpToInput = document.getElementById('jumpToInput');
+            const jumpToBtn = document.getElementById('jumpToBtn');
+            const buton = document.body;
             
             let currentSlideIndex = 0;
             let slideInterval = null;
@@ -136,9 +145,25 @@
                 showSlide(currentSlideIndex);
             }
             
+        
+            function jumpToSlide(index) {
+                if (index >= 0 && index < slides.length) {
+                    currentSlideIndex = index;
+                    showSlide(currentSlideIndex);
+                } else {
+                    alert('Please enter a valid slide number between 1 and ' + slides.length);
+                }
+            }
+            
             // Function to start the slideshow
             function startSlideshow() {
                 if (!isPlaying) {
+                    
+                    if (currentSlideIndex === slides.length - 1) {
+                        currentSlideIndex = 0;
+                        showSlide(currentSlideIndex);
+                    }
+                    
                     const interval = parseInt(intervalSelect.value) * 1000;
                     slideInterval = setInterval(nextSlide, interval);
                     playPauseBtn.textContent = 'Pause';
@@ -163,6 +188,16 @@
                     startSlideshow();
                 }
             });
+
+            buton.addEventListener('keypress', function() {
+                if(event.key === 'p'){
+                if (isPlaying) {
+                    stopSlideshow();
+                } else {
+                    startSlideshow();
+                }
+            }
+            });
             
             // Event listener for interval change
             intervalSelect.addEventListener('change', function() {
@@ -171,6 +206,26 @@
                     startSlideshow();
                 }
             });
+
+           
+
+            jumpToBtn.addEventListener('click', function() {
+                const slideNumber = parseInt(jumpToInput.value);
+                if (!isNaN(slideNumber)) {
+                    jumpToSlide(slideNumber - 1);
+                } else {
+                    alert('Please enter a valid slide number');
+                }
+            });
+
+           
+            jumpToInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    jumpToBtn.click();
+                }
+            });
+
         });
     </script>
 </body>
